@@ -1,0 +1,92 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<script type="text/javascript" src="//js.nicedit.com/nicEdit-latest.js"></script>
+<script type="text/javascript">
+<!--bkLib.onDomLoaded(function() {-->
+<!--	new nicEditor({buttonList : ['fontSize','fontFamily','bold','italic','underline','left','center','right','indent','outdent','strikeThrough','subscript','superscript','ol','ul','subscript','superscript','strikethrough','removeformat','html']}).panelInstance('editableText');-->
+<!--});-->
+
+<!--$(document).ready(function() {-->
+<!--  $('#summernote').summernote();-->
+<!--});-->
+
+$(document).ready(function() {
+  $('#summernote').summernote({
+        placeholder: 'Start you page content',
+        tabsize: 2,
+        height: 400,
+  });
+
+
+  let editorContent = document.getElementById('editorContent').value;
+  $('#summernote').summernote('code', editorContent);
+});
+
+</script>
+<th:block th:fragment>
+    <div style="background-color: #dec7a3;" class="col-lm-11 m-auto d-flex justify-content-center-page">
+        <form id="add-page-form" style="min-width: 860px; max-width: 1024px; width: 75%" th:action="@{/page/edit-page}" th:method="post" th:object="${page}">
+            <div class="form-group padding-top-16">
+                <h2 id="title" class="custom-content-center">Edit Page</h2>
+            </div>
+
+<!--            <div class="form-group">-->
+<!--                <label for="page-name" class="font-weight-bold-page custom-content-center">Page Title</label>-->
+<!--                <input type="text" class="form-control-page custom-content-center text-center-page" style="width:330px" id="page-name" name="pageTitle" th:value="*{pageTitle}">-->
+<!--            </div>-->
+
+            <div class="form-group" th:classappend="${#fields.hasErrors('headline')}  ? 'bg-danger'">
+                <label for="page-title" class="font-weight-bold-page custom-content-center">Page Headline*</label>
+                <input type="text" class="form-control-page custom-content-center text-center-page" style="width:330px" id="page-title" name="headline" th:value="*{headline}">
+                <th:block th:if="${page.action} != null">
+                    <small class="custom-content-center font-weight-bold-page" style="color: red;">This article has to have a headline!</small>
+                </th:block>
+            </div>
+
+            <h1 th:value="${page.description}">qweq</h1>
+            <th:block th:if="${#strings.equals(page.section, 'PUBLICATIONS') || #strings.equals(page.section, 'EVENTS')}">
+                <div class="form-group">
+                    <label for="page-title" class="font-weight-bold-page custom-content-center">Short Description</label>
+                    <textarea class="form-control-page custom-content-center text-center-page" maxlength="220" rows="4"
+                              name="description" th:field="${page.description}"></textarea>
+                </div>
+            </th:block>
+
+            <label class="font-weight-bold-page custom-content-center">Page Content</label>
+<!--            <div class="editor">-->
+<!--                <textarea id="editableText" style="width: 100%; height: 500px;" placeholder="Page content here..."></textarea>-->
+<!--            </div>-->
+            <textarea id="summernote" name="editordata"></textarea>
+
+            <input id="editorContent" type="hidden" th:value="*{editordata}"/>
+            <!--            <div class="form-group padding-top-16">-->
+            <!--                <label for="add-product-image" class="font-weight-bold-page">Images</label>-->
+            <!--                <input type="file" multiple="multiple" class="form-control-page-file" id="add-product-image" name="image">-->
+            <!--            </div>-->
+
+            <input id="action" type="hidden" name="action"/>
+
+            <hr class="hr-2 bg-dark w-25">
+
+            <div class="row my-5 d-flex justify-content-center-page padding-bottom-32-imp">
+                <div class="col d-flex justify-content-center-page padding-right-32">
+                    <button onclick="fillPageChoice('publish')" class="btn btn-success min-width-120">Publish</button>
+                </div>
+                <div class="col d-flex justify-content-center-page padding-left-32">
+                    <button onclick="fillPageChoice('save')" class="btn btn-group min-width-120 mr-2">Save as Draft</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        function fillPageChoice(action) {
+            $('#action').val(action);
+            setTimeout(function () {
+                this.form.submit();
+                e.preventDefault();
+            }, 200);
+        }
+    </script>
+</th:block>

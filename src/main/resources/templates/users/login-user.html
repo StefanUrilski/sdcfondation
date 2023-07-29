@@ -1,0 +1,34 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<link th:href="@{/css/reset.css}"  rel="stylesheet" >
+<link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet" >
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<th:block th:fragment>
+  <div class="m-5 p-5">
+    <h1 class="text-center text-dark">Login</h1>
+    <hr class="hr-2 bg-dark w-25">
+    <form action="#" class="form w-25 mx-auto" th:action="@{/users/login}" th:method="post">
+      <div class="form-group">
+        <label for="username" class="font-weight-bold">Email</label>
+        <input type="text" class="form-control" id="username" placeholder="Email..." name="email">
+      </div>
+      <div class="form-group">
+        <label for="password" class="font-weight-bold w-25">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password..." name="password">
+      </div>
+      <hr class="hr-2 bg-dark">
+      <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn btn-dark min-width-120">Login</button>
+      </div>
+    </form>
+    <br />
+    <th:block th:if="${param.error}">
+      <div class="text-center" style="color: red; font-weight: 900;"
+           th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+        <!--Bad Credentials-->
+      </div>
+    </th:block>
+  </div>
+</th:block>

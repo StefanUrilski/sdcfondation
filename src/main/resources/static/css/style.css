@@ -1,0 +1,192 @@
+body{
+    background-color: #fefbe9;
+    background-size: contain;
+}
+
+/* Add a black background color to the top navigation */
+.sticky-navbar{
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.sticky-navbar a{
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none !important;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.sticky-navbar a:hover{
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.sticky-navbar a.active{
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Hide the link that should open and close the sticky-navbar on small screens */
+.sticky-navbar .icon{
+  display: none;
+}
+
+#footer{
+    min-height: 160px;
+  background-color: #e1eedd;
+}
+
+.footer-blocks-centered{
+  display: grid;
+  justify-content: space-around;
+}
+
+.footer-container{
+  margin: 0 !important;
+  padding: 22px 0 22px 0;
+}
+
+@media (min-width: 768px){
+  .footer-blocks-centered{
+    display: grid;
+    justify-content: space-around;
+  }
+}
+
+.div-centered{
+  margin: auto;
+}
+
+.sticky{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1049;
+}
+
+.img-center{
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*--*/
+/*:root {*/
+/*  font: 400 2ch/1.25 Consolas;*/
+/*}*/
+
+/*body {*/
+/*  font-size: 2ch*/
+/*}*/
+
+.editor {
+  min-height: 300px;
+  min-width: 775px;
+  background-color: white;
+}
+
+button {
+  width: 5ex;
+  text-align: center;
+  padding: 1px 3px;
+}
+
+
+/* ------------------------------------------------------------------
+-                       START OF ERROR STYLES                       -
+------------------------------------------------------------------ */
+
+.min-width-120{
+    min-width: 120px;
+}
+
+.padding-left-32{
+    padding-left: 32px;
+}
+
+.padding-right-32{
+    padding-right: 32px;
+}
+
+.padding-bottom-32-imp{
+    padding-bottom: 32px;
+}
+
+.padding-left-12{
+    padding-left: 12px;
+}
+
+.padding-top-16{
+    padding-top: 16px;
+}
+
+#main{
+    padding: 16px;
+}
+
+
+.justify-content-center-page{-ms-flex-pack:center!important;justify-content:center!important}
+.font-weight-bold-page{font-weight:700!important}
+.form-control-page{display:block;width:100%;padding:.375rem .75rem;line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}
+.text-center-page{text-align:center!important}
+.d-flex{display:-ms-flexbox!important;display:flex!important}
+.bg-danger{background-color:#dc3545!important}a.bg-danger:focus,a.bg-danger:hover,button.bg-danger:focus,button.bg-danger:hover{background-color:#bd2130!important}
+
+.custom-content-center{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control{
+    width: 25%;
+}
+
+.container {
+    width:100% !important;
+    text-align:center;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
+
+.results tr[visible='false'],
+.no-result{
+    display:none;
+}
+
+.results tr[visible='true']{
+    display:table-row;
+}
+
+.counter{
+    padding:8px;
+    color:#ccc;
+}
+
+/*
+.form-control{
+    min-width: 860px;
+    max-width: 1024px;
+    width: 25%;
+}
+*/
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<link th:href="@{/css/reset.css}"  rel="stylesheet" >
+<link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet" >
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".search").keyup(function () {
+            var searchTerm = $(".search").val();
+            var listItem = $('.results tbody').children('tr');
+            var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+
+            $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+                    return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                }
+            });
+
+            $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+                $(this).attr('visible','false');
+            });
+
+            $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+                $(this).attr('visible','true');
+            });
+
+            var jobCount = $('.results tbody tr[visible="true"]').length;
+            $('.counter').text(jobCount + ' item');
+
+            if(jobCount == '0') {$('.no-result').show();}
+            else {$('.no-result').hide();}
+        });
+    });
+</script>
+<th:block th:fragment>
+    <div class="container justify-content-center my-4">
+        <div class="jumbotron bg-forms d-flex justify-content-center">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <h1 class="text text-center">All Pages</h1>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div style="padding-left: 80%; margin: 12px 0;">
+                        <input type="text" class="search form-control" placeholder="Search...">
+                    </div>
+                    <span class="counter pull-right"></span>
+                    <table class="table table-hover table-bordered results">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">#</th>
+                                <th class="th-sm">Заглавие</th>
+                                <th class="th-sm">Секция</th>
+                                <th class="th-sm">Видима страница</th>
+                                <th class="th-sm">Редактиране</th>
+                            </tr>
+                            <tr class="warning no-result">
+                                <td colspan="4"><i class="fa fa-warning"></i>Няма резултати</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <th:block th:each="page,iter : ${pages}">
+                                <tr>
+                                    <th scope="row" th:text="${iter.index + 1}"></th>
+                                    <td th:text="${page.headline}"></td>
+                                    <td th:text="${page.section.getValue()}"></td>
+                                    <td th:text="(${page.pagePublished == true} ? 'Да' : 'Не')"></td>
+                                    <td><a th:href="@{/page/edit-page/{id}(id=${page.id})}" class="btn bg-success text-white">Промени</a></td>
+                                </tr>
+                            </th:block>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>

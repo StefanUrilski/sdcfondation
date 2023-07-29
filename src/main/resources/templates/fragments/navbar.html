@@ -1,0 +1,212 @@
+<th:block>
+
+    <div style="width:100% !important; text-align:center;" class="sticky-navbar" id="sticky-navbar">
+        <div class="left">
+            <a th:href="@{/}" class="active">Начало</a>
+            <a th:href="@{/purposes}">Цели и дейности</a>
+            <a th:href="@{/publications}">Публикации</a>
+            <a th:href="@{/addictions}">Зависимости</a>
+            <a th:href="@{/family-programs}">Семейни програми</a>
+            <a th:href="@{/events}">Събития</a>
+        </div>
+
+        <div class="right">
+            <th:block sec:authorize="isAnonymous()">
+                <ul>
+                    <a class="nav-link" th:href="@{/users/register}">Register</a>
+                    <a class="nav-link" th:href="@{/users/login}">Login</a>
+                </ul>
+            </th:block>
+            <th:block sec:authorize="hasRole('ROLE_MODERATOR')">
+                <a th:href="@{/page/create-page}">New Page</a>
+                <a th:href="@{/page/all-pages}">All Pages</a>
+                <a th:href="@{/users/all}">Users</a>
+                <a th:href="@{/logout}">Logout</a>
+            </th:block>
+        </div>
+    </div>
+
+<!--    <th:block sec:authorize="hasRole('ROLE_ADMIN')">-->
+
+<!--    </th:block>-->
+
+
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-pic rounded font-weight-bold">-->
+<!--        <a class="navbar-brand" th:href="@{/}">La Gatta Mangiona ©</a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#guestNav"-->
+<!--                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--                GUEST SECTION-->
+<!--        &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--        <th:block sec:authorize="isAnonymous()">-->
+<!--            <div class="collapse navbar-collapse d-flex justify-content-end" id="guestNav">-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <li class="nav-item active">-->
+<!--                        <a class="nav-link" th:href="@{/users/register}">Register</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item active">-->
+<!--                        <a class="nav-link" th:href="@{/users/login}">Login</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </th:block>-->
+
+<!--        &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--             LOGIN USER SECTION-->
+<!--        &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--&lt;!&ndash;        <th:block sec:authorize="isAuthenticated()">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="collapse navbar-collapse d-flex justify-content-end" id="userNav">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul class="navbar-nav">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--&lt;!&ndash;                            COURIER PART&ndash;&gt;-->
+<!--&lt;!&ndash;                    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <th:block sec:authorize="hasRole('ROLE_COURIER') && !hasRole('ROLE_MODERATOR')">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link active dropdown-toggle" href="#" role="button" id="allOrdersDropdown"&ndash;&gt;-->
+<!--&lt;!&ndash;                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                All Orders&ndash;&gt;-->
+<!--&lt;!&ndash;                            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="dropdown-menu" aria-labelledby="allOrdersDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <th:block th:each="town : ${T(com.pizzaapp.domain.entities.Town).values()}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{orders/delivery/{id}(id=${town})}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                       th:text="${town}"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link" th:href="@{/orders/my}">My Orders</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </th:block>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--&lt;!&ndash;                            USER PART&ndash;&gt;-->
+<!--&lt;!&ndash;                    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <th:block sec:authorize="hasRole('ROLE_USER') && !hasRole('ROLE_COURIER')">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link active dropdown-toggle" href="#" role="button" id="cartDropdown"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    Cart&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="dropdown-menu" aria-labelledby="cartDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th:block th:if="${#session.getAttribute('shopping-cart')} != null">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <th:block th:object="${#session.getAttribute('shopping-cart')}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <th:block th:if="*{pizzas} != null">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div th:each="pizza : *{pizzas}" class="dropdown-item"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                     th:text="|Pizza ${pizza.item.name} x ${pizza.quantity}|"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <th:block th:object="${#session.getAttribute('shopping-cart')}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <th:block th:if="*{drinks} != null">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div th:each="drink : *{drinks}" class="dropdown-item"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                     th:text="|${drink.item.name} x ${drink.quantity}|"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="dropdown-divider"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <a th:href="@{/cart/details}" class="btn btn-dark">Cart</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link" th:href="@{/users/addresses/all}">Addresses</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="dropdown show">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link active dropdown-toggle" href="#" role="button" id="orderDropdown"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    Order&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="dropdown-menu" aria-labelledby="orderDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/menu/order/drink}">Drinks</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/menu/order/pizza}">Pizzas</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </th:block>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--&lt;!&ndash;                            MODERATOR PART&ndash;&gt;-->
+<!--&lt;!&ndash;                    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <th:block sec:authorize="hasRole('ROLE_MODERATOR')">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="dropdown show">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link active dropdown-toggle" href="#" role="button" id="basicsDropdown"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    Add Basics&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="dropdown-menu" aria-labelledby="basicsDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/ingredients/size/add}">Pizza Size</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/ingredients/category/add}">Ingredient&ndash;&gt;-->
+<!--&lt;!&ndash;                                        Category</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="dropdown show">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link active dropdown-toggle" href="#" role="button" id="itemDropdown"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    Add Items&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="dropdown-menu" aria-labelledby="itemDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/menu/drinks/add}">Drink</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/menu/pizzas/add}">Pizza</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/ingredients/add}">Ingredient</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="dropdown show">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link active dropdown-toggle" href="#" role="button" id="allDropdown"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    All Items&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="dropdown-menu" aria-labelledby="allDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/items/drinks/all}">Drinks</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/items/pizzas/all}">Pizzas</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/items/ingredients/all}">Ingredients</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </th:block>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--&lt;!&ndash;                            ADMIN PART&ndash;&gt;-->
+<!--&lt;!&ndash;                    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item active">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link active dropdown-toggle" href="#" role="button" id="adminDropdown"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    Admin&ndash;&gt;-->
+<!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="dropdown-menu" aria-labelledby="adminDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/profile/all}">All Users</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" th:href="@{/orders/all}">All Orders</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="nav-item active pl-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash;                    <form th:action="@{/logout?login}" method="post">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash;                        <button class="logout-button bg-transparent border-0">Logout</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash;                    </form>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="nav-link" th:href="@{/logout?login}">Logout</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </th:block>&ndash;&gt;-->
+<!--    </nav>-->
+
+
+</th:block>
+

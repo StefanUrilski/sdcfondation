@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <th:block th:include="~{fragments/head}" />
+
+</head>
+<body class="justify-content-center">
+    <header id="navbar">
+
+        <th:block th:include="~{fragments/navbar}" />
+
+    </header>
+    <main id="main">
+
+        <th:block th:include="${view}" />
+
+    </main>
+
+    <footer id="footer">
+
+        <th:block th:include="~{fragments/footer}" />
+
+    </footer>
+    <script onload="autoResizeDiv()">
+        function autoResizeDiv()
+        {
+            let height = $(window).height() - $('#footer').height() - $('#navbar').height() - 0.1; // remove +5 when play with sticky
+            $('#main').css('min-height', height);
+        }
+        window.onresize = autoResizeDiv;
+        autoResizeDiv();
+    </script>
+</body>
+</html>

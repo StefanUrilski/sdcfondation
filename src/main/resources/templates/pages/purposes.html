@@ -1,0 +1,15 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<link th:href="@{/css/reset.css}"  rel="stylesheet" >
+<link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet" >
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<th:block th:fragment>
+    <div class="flex-fill p-4">
+        <h1 class="text-center" th:text="${page.headline}" />
+    </div>
+    <div class="container">
+        <div th:remove="tag" th:utext="${page.editordata}"></div>
+    </div>
+</th:block>
